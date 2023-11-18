@@ -7,7 +7,6 @@ import {
   getTranscript,
   searchYoutube,
 } from "@/lib/youtube";
-import { strict } from "assert";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
