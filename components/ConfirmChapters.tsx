@@ -6,7 +6,6 @@ import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Record } from "@prisma/client/runtime/library";
 
 type Props = {
   course: Course & {

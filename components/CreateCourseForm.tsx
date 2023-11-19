@@ -16,11 +16,11 @@ import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import SubscriptionAction from "./SubscriptionAction";
 
-type Props = {};
+type Props = {isPro: boolean};
 
 type Input = z.infer<typeof createChaptersSchema>;
 
-const CreateCourseForm = (props: Props) => {
+const CreateCourseForm = ({isPro}: Props) => {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate: createChapters, isPending} = useMutation({
@@ -42,6 +42,7 @@ const CreateCourseForm = (props: Props) => {
   });
 
   function onSubmit(data: Input) {
+    console.log(data);
     if (data.units.some((unit) => unit === "")) {
       toast({
         title: "Erro",
@@ -68,6 +69,9 @@ const CreateCourseForm = (props: Props) => {
       },
     });
   }
+
+  console.log(form.watch());
+
   return (
     <div className="w-full">
       <Form {...form}>
@@ -167,7 +171,7 @@ const CreateCourseForm = (props: Props) => {
           </Button>
         </form>
       </Form>
-       <SubscriptionAction />
+      {!isPro && <SubscriptionAction />}
     </div>
   );
 };

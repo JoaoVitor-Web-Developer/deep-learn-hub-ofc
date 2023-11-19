@@ -25,7 +25,7 @@ const GalleryCourseCard = async ({ course }: Props) => {
               className="object-cover w-full max-h-[300px] rounded-t-lg"
               width={300}
               height={300}
-              alt="picture of the course"
+              alt="Foto do curso"
             />
             <span className="absolute px-2 py-1 text-white rounded-md bg-black/60 w-fit bottom-2 left-2 right-2">
               {course.name}
@@ -34,7 +34,7 @@ const GalleryCourseCard = async ({ course }: Props) => {
         </div>
 
         <div className="p-4">
-          <h4 className="text-sm text-secondary-foreground/60">Units</h4>
+          <h4 className="text-sm text-secondary-foreground/60">Subtópicos</h4>
           <div className="space-y-1">
             {course.units.map((unit, unitIndex) => {
               return (

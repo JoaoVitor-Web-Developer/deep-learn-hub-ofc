@@ -1,3 +1,5 @@
+// /api/course/createChapters
+
 import { NextResponse } from "next/server";
 import { createChaptersSchema } from "@/validators/course";
 import { ZodError } from "zod";
