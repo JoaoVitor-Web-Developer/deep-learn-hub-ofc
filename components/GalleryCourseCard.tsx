@@ -5,10 +5,10 @@ import React from "react";
 
 type Props = {
   course: Course & {
-    units: (Unit & {
+    units?: (Unit & {
       chapters: Chapter[];
     })[];
-  };
+};
 };
 
 const GalleryCourseCard = async ({ course }: Props) => {
@@ -36,7 +36,7 @@ const GalleryCourseCard = async ({ course }: Props) => {
         <div className="p-4">
           <h4 className="text-sm text-secondary-foreground/60">Subtópicos</h4>
           <div className="space-y-1">
-            {course.units.map((unit, unitIndex) => {
+            {course.units?.map((unit, unitIndex) => {
               return (
                 <Link
                   href={`/course/${course.id}/${unitIndex}/0`}

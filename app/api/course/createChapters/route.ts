@@ -10,6 +10,8 @@ import { getAuthSession } from "@/lib/auth";
 import { checkSubscription } from "@/lib/subscription";
 
 export async function POST(req: Request, res: Response) {
+
+
   try {
     const session = await getAuthSession();
     if (!session?.user) {
@@ -63,7 +65,11 @@ export async function POST(req: Request, res: Response) {
       data: {
         name: title,
         image: course_image,
+<<<<<<< HEAD
         createdBy: session.user.id,
+=======
+        
+>>>>>>> a406c21662981c256651f045f250d50c3d8466f9
       },
     });
 

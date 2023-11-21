@@ -25,23 +25,28 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token }) => {
-      const db_user = await prisma.user.findFirst({
-        where: {
-          email: token.email,
-        },
-      });
-      if (db_user) {
-        token.id = db_user.id;
-        token.credits = db_user.credits;
+      if (token && token.email) {
+        const db_user = await prisma.user.findFirst({
+          where: {
+            email: token.email,
+          },
+          select: {
+            id: true,
+            credits: true,
+          },
+        });
+
+        if (db_user) {
+          token.id = db_user.id;
+          token.credits = db_user.credits;
+        }
       }
+
       return token;
     },
     session: ({ session, token }) => {
       if (token) {
         session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
         session.user.credits = token.credits;
       }
       return session;
@@ -58,6 +63,7 @@ export const authOptions: NextAuthOptions = {
 };
 
 
+<<<<<<< HEAD
 export const getAuthSession = (props: any) => {
 
   const options: NextAuthOptions = {...authOptions};
@@ -66,5 +72,9 @@ export const getAuthSession = (props: any) => {
     ...options.session,
     ...props,
   }
+=======
+
+export const getAuthSession = () => {
+>>>>>>> a406c21662981c256651f045f250d50c3d8466f9
   return getServerSession(authOptions);
 }
