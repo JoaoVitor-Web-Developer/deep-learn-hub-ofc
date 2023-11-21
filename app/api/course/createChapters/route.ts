@@ -22,6 +22,12 @@ export async function POST(req: Request, res: Response) {
     const body = await req.json();
     const { title, units } = createChaptersSchema.parse(body);
 
+    const userCourses = await prisma.course.findMany({
+      where: {
+        createdBy: session.user.id,
+      },
+    });
+
     type outputUnits = {
       title: string;
       chapters: {
@@ -57,6 +63,7 @@ export async function POST(req: Request, res: Response) {
       data: {
         name: title,
         image: course_image,
+        createdBy: session.user.id,
       },
     });
 

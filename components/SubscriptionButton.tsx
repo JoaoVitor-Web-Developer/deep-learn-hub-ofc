@@ -20,7 +20,7 @@ const SubscriptionButton = ({ isPro }: Props) => {
   };
   return (
     <Button className="mt-4" disabled={loading} onClick={handleSubscribe}>
-      {isPro ? "Manage Subscriptions" : "Sejá Pro !"}
+      {isPro ? "Administrar assinatura" : "Sejá Pro !"}
     </Button>
   );
 };

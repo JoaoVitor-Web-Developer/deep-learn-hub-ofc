@@ -58,6 +58,13 @@ export const authOptions: NextAuthOptions = {
 };
 
 
-export const getAuthSession = () => {
+export const getAuthSession = (props: any) => {
+
+  const options: NextAuthOptions = {...authOptions};
+
+  options.session = {
+    ...options.session,
+    ...props,
+  }
   return getServerSession(authOptions);
 }

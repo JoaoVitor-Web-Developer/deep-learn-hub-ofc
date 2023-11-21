@@ -47,15 +47,19 @@ model User {
 
   accounts Account[]
   sessions Session[]
+  courses Course[]
 }
 
 // course contains many units
 model Course {
-  id    String @id @default(cuid())
-  name  String
-  image String
-  units Unit[]
+  id       String  @id @default(cuid())
+  name     String
+  image    String
+  units    Unit[]
+  createdBy String
+  user     User    @relation(fields: [createdBy], references: [id]) 
 }
+
 
 // unit contains many chapters
 model Unit {
