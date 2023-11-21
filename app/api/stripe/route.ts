@@ -6,56 +6,56 @@ import { NextResponse } from "next/server";
 const settingsUrl = process.env.NEXTAUTH_URL + "/settings";
 
 export async function GET() {
-  try {
-    const session = await getAuthSession();
-    if (!session?.user) {
-      return new NextResponse("Sem autorização", { status: 401 });
-    }
+ try {
+   const session = await getAuthSession();
+   if (!session?.user) {
+     return new NextResponse("Sem autorização", { status: 401 });
+   }
 
-    const userSubscription = await prisma.userSubscription.findUnique({
-      where: {
-        userId: session.user.id,
-      },
-    });
+   const userSubscription = await prisma.userSubscription.findUnique({
+     where: {
+       userId: session.user.id,
+     },
+   });
 
-    if (userSubscription && userSubscription.stripeCustomerId) {
-      const stripeSession = await stripe.billingPortal.sessions.create({
-        customer: userSubscription.stripeCustomerId,
-        return_url: settingsUrl,
-      });
-      return NextResponse.json({ url: stripeSession.url });
-    }
+   if (userSubscription && userSubscription.stripeCustomerId) {
+     const stripeSession = await stripe.billingPortal.sessions.create({
+       customer: userSubscription.stripeCustomerId,
+       return_url: settingsUrl,
+     });
+     return new NextResponse(JSON.stringify({ url: stripeSession.url }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+   }
 
-    const stripeSession = await stripe.checkout.sessions.create({
-      success_url: settingsUrl,
-      cancel_url: settingsUrl,
-      payment_method_types: ["card"],
-      mode: "subscription",
-      billing_address_collection: "auto",
-      customer_email: session.user.email ?? "",
-      line_items: [
-        {
-          price_data: {
-            currency: "BRL",
-            product_data: {
-              name: "Deep Learn Hub",
-              description: "Geração de cursos ilimitados!",
-            },
-            unit_amount: 990,
-            recurring: {
-              interval: "month",
-            },
-          },
-          quantity: 1,
-        },
-      ],
-      metadata: {
-        userId: session.user.id,
-      },
-    });
-    return NextResponse.json({ url: stripeSession.url });
-  } catch (error) {
-    console.log("[STRIPE ERROR]", error);
-    return new NextResponse("internal server error", { status: 500 });
-  }
+   const stripeSession = await stripe.checkout.sessions.create({
+     success_url: settingsUrl,
+     cancel_url: settingsUrl,
+     payment_method_types: ["card"],
+     mode: "subscription",
+     billing_address_collection: "auto",
+     customer_email: session.user.email ?? "",
+     line_items: [
+       {
+         price_data: {
+           currency: "BRL",
+           product_data: {
+             name: "Deep Learn Hub",
+             description: "Geração de cursos ilimitados!",
+           },
+           unit_amount: 990,
+           recurring: {
+             interval: "month",
+           },
+         },
+         quantity: 1,
+       },
+     ],
+     metadata: {
+       userId: session.user.id,
+     },
+   });
+   return new NextResponse(JSON.stringify({ url: stripeSession.url }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+ } catch (error) {
+   console.log("[STRIPE ERROR]", error);
+   return new NextResponse("internal server error", { status: 500 });
+ }
 }
