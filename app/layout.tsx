@@ -8,10 +8,10 @@ import { Toaster } from "@/components/ui/toaster";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Deep Learn Hub",
-  description: "Seu aprendizado com IA",
-};
+// export const metadata: Metadata = {
+//   title: "Deep Learn Hub",
+//   description: "Seu aprendizado com IA",
+// };
 
 export default function RootLayout({
   children,
