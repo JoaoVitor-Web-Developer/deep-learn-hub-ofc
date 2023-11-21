@@ -63,7 +63,6 @@ export const authOptions: NextAuthOptions = {
 };
 
 
-<<<<<<< HEAD
 export const getAuthSession = (props: any) => {
 
   const options: NextAuthOptions = {...authOptions};
@@ -72,9 +71,5 @@ export const getAuthSession = (props: any) => {
     ...options.session,
     ...props,
   }
-=======
-
-export const getAuthSession = () => {
->>>>>>> a406c21662981c256651f045f250d50c3d8466f9
   return getServerSession(authOptions);
 }

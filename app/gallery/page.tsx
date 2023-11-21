@@ -6,14 +6,8 @@ import Link from "next/link";
 
 type Props = {};
 
-<<<<<<< HEAD
 const GalleryPage: React.FC<Props> = async ({...authOptions}: Props) => {
   const session = await getAuthSession(authOptions);
-=======
-const GalleryPage: React.FC<Props> = async (props: Props) => {
-  const session = await getAuthSession();
-
->>>>>>> a406c21662981c256651f045f250d50c3d8466f9
   if (!session) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
