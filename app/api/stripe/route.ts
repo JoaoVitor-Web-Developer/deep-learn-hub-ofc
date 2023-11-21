@@ -18,7 +18,6 @@ export async function GET() {
       },
     });
 
-    // cancel at the billing portal
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: userSubscription.stripeCustomerId,
@@ -27,7 +26,6 @@ export async function GET() {
       return NextResponse.json({ url: stripeSession.url });
     }
 
-    // user's first time subscribing
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: settingsUrl,
       cancel_url: settingsUrl,
@@ -40,8 +38,8 @@ export async function GET() {
           price_data: {
             currency: "BRL",
             product_data: {
-              name: "Learning Journey Pro",
-              description: "unlimited course generation!",
+              name: "Deep Learn Hub",
+              description: "Geração de cursos ilimitados!",
             },
             unit_amount: 990,
             recurring: {

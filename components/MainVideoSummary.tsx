@@ -22,7 +22,7 @@ const MainVideoSummary = ({
       <h1 className="text-4xl font-bold">{chapter.name}</h1>
       <iframe
         title="chapter video"
-        className="w-full mt-4 aspeect-video max-h-[24rem]"
+        className="w-full h-[60%] mt-4 aspeect-video max-h-[24rem]"
         src={`https://www.youtube.com/embed/${chapter.videoId}`}
         allowFullScreen
       />

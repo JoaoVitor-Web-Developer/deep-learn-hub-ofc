@@ -39,7 +39,7 @@ export async function POST(req: Request, res: Response) {
 
     const { summary }: { summary: string } = await strict_output(
       "Você é uma IA capaz de resumir uma transcrição do YouTube",
-      "resuma em 250 palavras ou menos e não fale sobre os patrocinadores ou qualquer coisa não relacionada ao tema principal, também não apresente o assunto do resumo.\n" +
+      "resuma em 450 palavras ou menos e não fale sobre os patrocinadores ou qualquer coisa não relacionada ao tema principal, também não apresente o assunto do resumo.\n" +
         transcript,
       { summary: "resumo da transcrição" }
     );

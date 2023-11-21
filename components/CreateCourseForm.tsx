@@ -69,9 +69,6 @@ const CreateCourseForm = ({isPro}: Props) => {
       },
     });
   }
-
-  console.log(form.watch());
-
   return (
     <div className="w-full">
       <Form {...form}>
