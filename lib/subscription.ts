@@ -1,10 +1,11 @@
+import { authOptions } from '@/lib/auth';
 import { getAuthSession } from "./auth";
 import { prisma } from "./db";
 
 const DAY_IN_MS = 1000 * 60 * 60 * 24;
 
 export const checkSubscription = async () => {
-  const session = await getAuthSession();
+  const session = await getAuthSession({authOptions});
   if (!session?.user) {
     return false;
   }

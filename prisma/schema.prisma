@@ -60,10 +60,6 @@ model Course {
 }
 
 
-<<<<<<< HEAD
-// unit contains many chapters
-=======
->>>>>>> a406c21662981c256651f045f250d50c3d8466f9
 model Unit {
   id       String @id @default(cuid())
   courseId String
