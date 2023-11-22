@@ -29,10 +29,11 @@ const CreateCourseForm = ({isPro}: Props) => {
   const { toast } = useToast();
   const { mutate: createChapters, isPending} = useMutation({
     mutationFn: async ({ title, units }: Input) => {
-      const response = await axios.post(baseUrl + path, {
+      const response = await axios.post(`${baseUrl + path}`, {
         title,
         units,
       });
+      console.log(response)
       return response.data;
     },
   });
