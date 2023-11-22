@@ -52,7 +52,6 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET as string,
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -60,6 +59,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+  secret: process.env.SECRET as string,
 };
 
 
