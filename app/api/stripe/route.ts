@@ -79,8 +79,4 @@ export async function getServerSideProps() {
       },
     }; 
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 62f7c1f79ea7c31513f9af4aeeb671d43e91dd51
