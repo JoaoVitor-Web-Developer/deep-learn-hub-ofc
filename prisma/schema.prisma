@@ -96,7 +96,7 @@ model Question {
   @@index([chapterId], name: "chapterId")
 }
 
-model UserSubscription {
+model userSubscription {
   id                     String    @id @default(cuid())
   userId                 String    @unique
   stripeCustomerId       String    @unique @map(name: "stripe_customer_id")
