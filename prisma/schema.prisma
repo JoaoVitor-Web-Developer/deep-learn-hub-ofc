@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
- }
+}
 
 datasource db {
   provider     = "mysql"
@@ -60,6 +60,7 @@ model Course {
 }
 
 
+// unit contains many chapters
 model Unit {
   id       String @id @default(cuid())
   courseId String
