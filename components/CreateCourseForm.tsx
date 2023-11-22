@@ -20,7 +20,7 @@ type Props = {isPro: boolean};
 
 type Input = z.infer<typeof createChaptersSchema>;
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://deep-learn-hub-ofc.vercel.app";
 const path = "/api/course/createChapters";
 
 
