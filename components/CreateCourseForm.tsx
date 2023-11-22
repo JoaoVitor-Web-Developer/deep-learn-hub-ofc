@@ -20,12 +20,16 @@ type Props = {isPro: boolean};
 
 type Input = z.infer<typeof createChaptersSchema>;
 
+const baseUrl = "https://deep-learn-hub-ofc.vercel.app";
+const path = "/api/course/createChapters";
+
+
 const CreateCourseForm = ({isPro}: Props) => {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate: createChapters, isPending} = useMutation({
     mutationFn: async ({ title, units }: Input) => {
-      const response = await axios.post("/api/course/createChapters", {
+      const response = await axios.post(baseUrl + path, {
         title,
         units,
       });
@@ -46,7 +50,7 @@ const CreateCourseForm = ({isPro}: Props) => {
     if (data.units.some((unit) => unit === "")) {
       toast({
         title: "Erro",
-        description: "Por favor preencha os Subtópicos.",
+        description: "Por favor, preencha os Subtópicos.",
         variant: "destructive",
       });
       return;
