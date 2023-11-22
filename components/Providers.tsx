@@ -16,7 +16,7 @@ export function Provider({ children, ...props }: ThemeProviderProps) {
         enableSystem
         {...props}
       >
-        <SessionProvider basePath="/api/auth">{children}</SessionProvider>
+        <SessionProvider>{children}</SessionProvider>
       </NextThemesProvider>
     </QueryClientProvider>
   );
