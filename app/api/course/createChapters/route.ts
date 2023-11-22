@@ -9,7 +9,11 @@ import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/auth";
 import { checkSubscription } from "@/lib/subscription";
 
+<<<<<<< HEAD
 export async function POST({...authOptions},req: Request, res: Response) {
+=======
+export async function POST({...authOptions}, req: Request, res: Response) {
+>>>>>>> 62f7c1f79ea7c31513f9af4aeeb671d43e91dd51
 
 
   try {
